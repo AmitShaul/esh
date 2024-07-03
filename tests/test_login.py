@@ -9,7 +9,7 @@ import config as cf
 logger = logging.getLogger(__name__)
 
 
-class TestEshTest:
+class TestEsh:
     def setup_method(self):
         self.driver = webdriver.Chrome()
         self.load_element_timeout = cf.load_element_timeout

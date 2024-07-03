@@ -1,5 +1,6 @@
 import logging
 from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
@@ -25,7 +26,7 @@ class TestEsh:
             _ = WebDriverWait(self.driver, timeout=self.load_element_timeout).until(
                 ec.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Powering next generation banking')]"))
             )
-        except TimeoutError as e:
+        except TimeoutException as e:
             assert 0, "got timeout while waiting for user name item"
         # Add creds
         # Type email address
@@ -43,7 +44,7 @@ class TestEsh:
             element = WebDriverWait(self.driver, timeout=self.load_element_timeout).until(
                 ec.presence_of_element_located((By.LINK_TEXT, "Table of Contents"))
             )
-        except TimeoutError as e:
+        except TimeoutException as e:
             # Handle timeout exception
             err_msg = "got timeout while waiting for 'Table of Contents'"
             logger.error(err_msg)
